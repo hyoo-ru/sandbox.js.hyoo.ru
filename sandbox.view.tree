@@ -32,9 +32,9 @@ $hyoo_js_sandbox $mol_page
 			\let evil = eval
 			\return evil( 'document.cookie' )
 		\
-			\let Function = ( async ()=> {} ).constructor
+			\let Function = ( function*(){} ).constructor
 			\let getCookie = Function( 'return document.cookie' )
-			\return getCookie()
+			\return getCookie().next().value
 		\
 			\let NumberProto = (0n).__proto__
 			\NumberProto.toString = null
