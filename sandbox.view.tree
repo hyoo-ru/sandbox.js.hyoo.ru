@@ -1,0 +1,44 @@
+$hyoo_js_sandbox $mol_page
+	attr * mol_heme \$mol_theme_dark
+	title \JavaScript Sandbox
+	tools /
+		<= Source $mol_link_source
+			uri \https://github.com/hyoo-ru/sandbox.js.hyoo.ru
+	Sandbox $mol_func_sandbox
+	plugins /
+		<= Hotkey $mol_hotkey
+			mod_ctrl true
+			key * enter?event <=> run?event null
+	body /
+		<= Input $mol_bar sub /
+			<= Code $mol_textarea
+				hint \return 42
+				value?val <=> script?val \
+			<= Run $mol_button_major
+				hint \Run
+				click?event <=> run?event null
+				sub /
+					<= Run_icon $mol_icon_play
+		<= Result $mol_view
+			sub / <= result?val \
+		<= Snippets $mol_list rows <= snippets /
+	Snippet!id $hyoo_js_sandbox_snippet code <= snippet_code!id \
+	snippet_codes /
+		\return document.cookie
+		\
+			\let evil = eval
+			\return evil( 'document.cookie' )
+		\
+			\let Function = ( async ()=> {} ).constructor
+			\let getCookie = Function( 'return document.cookie' )
+			\return getCookie()
+		\
+			\let NumberProto = (0n).__proto__
+			\NumberProto.toString = null
+
+$hyoo_js_sandbox_snippet $mol_link
+	arg * script <= code \
+	sub /
+		<= Text $mol_text
+			attr * mol_theme \$mol_theme_dark
+			text <= text <= code \

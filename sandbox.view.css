@@ -1,0 +1,52 @@
+[hyoo_js_sandbox] {
+	max-width: 60rem;
+	margin: auto;
+}
+
+[hyoo_js_sandbox_body] {
+	box-shadow: none;
+	display: flex;
+    flex-direction: column;
+}
+
+[hyoo_js_sandbox_code] {
+	flex: 1000 1 auto;
+}
+
+[hyoo_js_sandbox_input] {
+	margin: .75rem;
+	flex-wrap: wrap;
+}
+
+[hyoo_js_sandbox_run] {
+	flex: auto;
+}
+
+[hyoo_js_sandbox_result] {
+	margin: 0 .75rem;
+	padding: .5rem .75rem;
+	display: block;
+	flex: 1 0 auto;
+}
+
+[hyoo_js_sandbox_snippets] {
+	display: flex;
+	flex-direction: column;
+}
+
+[hyoo_js_sandbox_snippets] {
+	padding: .5rem;
+}
+
+[hyoo_js_sandbox_snippet] {
+	padding: .25rem;
+}
+
+[hyoo_js_sandbox_snippet_text] {
+	padding: 0;
+}
+
+[hyoo_js_sandbox_result][mol_view_error]:not([mol_view_error="Promise"]) {
+	color: var(--mol_theme_focus);
+	background: none;
+}
