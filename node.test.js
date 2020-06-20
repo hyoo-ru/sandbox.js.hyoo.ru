@@ -6322,7 +6322,7 @@ var $;
             return "";
         }
         snippet_codes() {
-            return ["return document.cookie", "let evil = eval\nreturn evil( 'document.cookie' )", "let Function = ( async ()=> {} ).constructor\nlet getCookie = Function( 'return document.cookie' )\nreturn getCookie()", "let NumberProto = (0n).__proto__\nNumberProto.toString = null"];
+            return ["return document.cookie", "let evil = eval\nreturn evil( 'document.cookie' )", "let Function = ( function*(){} ).constructor\nlet getCookie = Function( 'return document.cookie' )\nreturn getCookie().next().value", "let NumberProto = (0n).__proto__\nNumberProto.toString = null"];
         }
     }
     __decorate([
