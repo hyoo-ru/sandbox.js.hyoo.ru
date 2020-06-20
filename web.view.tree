@@ -105,32 +105,6 @@ $mol_hotkey $mol_plugin
 	mod_alt false
 	mod_shift false
 
-$mol_bar $mol_view
-
-$mol_string $mol_view
-	dom_name \input
-	enabled true
-	minimal_height 40
-	autocomplete false
-	field *
-		^
-		disabled <= disabled false
-		value <= value_changed?val <=> value?val \
-		placeholder <= hint \
-		type <= type?val \text
-		spellcheck <= spellcheck false
-		autocomplete <= autocomplete_native \
-	attr *
-		^
-		maxlength <= length_max Infinity
-	event *
-		^
-		input?event <=> event_change?event null
-		keydown?event <=> event_key_press?event null
-	plugins /
-		<= Submit $mol_hotkey
-			key * enter?event <=> submit?event null
-
 $mol_list $mol_view
 	render_visible_only true
 	render_over 0
@@ -313,6 +287,32 @@ $mol_text_image $mol_view
 	sub /
 		<= title?val \
 
+$mol_bar $mol_view
+
+$mol_string $mol_view
+	dom_name \input
+	enabled true
+	minimal_height 40
+	autocomplete false
+	field *
+		^
+		disabled <= disabled false
+		value <= value_changed?val <=> value?val \
+		placeholder <= hint \
+		type <= type?val \text
+		spellcheck <= spellcheck false
+		autocomplete <= autocomplete_native \
+	attr *
+		^
+		maxlength <= length_max Infinity
+	event *
+		^
+		input?event <=> event_change?event null
+		keydown?event <=> event_key_press?event null
+	plugins /
+		<= Submit $mol_hotkey
+			key * enter?event <=> submit?event null
+
 $mol_textarea $mol_view
 	event *
 		keydown?event <=> press?event null
@@ -334,22 +334,25 @@ $mol_icon_play $mol_icon path \M8,5.14V19.14L19,12.14L8,5.14Z
 
 $hyoo_js_sandbox $mol_page
 	attr * mol_heme \$mol_theme_dark
-	title \JavaScript Sandbox
+	title @ \JavaScript Sandbox
 	tools /
 		<= Source $mol_link_source
 			uri \https://github.com/hyoo-ru/sandbox.js.hyoo.ru
-	Sandbox $mol_func_sandbox
 	plugins /
 		<= Hotkey $mol_hotkey
 			mod_ctrl true
 			key * enter?event <=> run?event null
 	body /
+		<= Intro $mol_text
+			text <= intro @ \
+				\Only JS and Math functions and constants are available inside the sandbox.
+				\**Hack it if you might!**
 		<= Input $mol_bar sub /
 			<= Code $mol_textarea
 				hint \return 42
 				value?val <=> script?val \
 			<= Run $mol_button_major
-				hint \Run
+				hint <= run_hint @ \Run
 				click?event <=> run?event null
 				sub /
 					<= Run_icon $mol_icon_play

@@ -1090,70 +1090,6 @@ declare namespace $.$$ {
 }
 
 declare namespace $ {
-    class $mol_link extends $mol_view {
-        dom_name(): string;
-        attr(): {
-            href: string;
-            title: string;
-            target: string;
-            download: string;
-            mol_link_current: boolean;
-            mol_theme: any;
-        };
-        uri(): string;
-        hint(): string;
-        target(): string;
-        file_name(): string;
-        current(): boolean;
-        theme(): any;
-        sub(): readonly $mol_view_content[];
-        arg(): {};
-        event(): {
-            click: (event?: any) => any;
-        };
-        click(event?: any, force?: $mol_mem_force): any;
-        event_click(event?: any, force?: $mol_mem_force): any;
-    }
-}
-
-declare namespace $ {
-    class $mol_state_arg extends $mol_object {
-        prefix: string;
-        static href(next?: string): string;
-        static dict(next?: {
-            [key: string]: string | null;
-        }): {
-            [key: string]: string;
-        };
-        static value(key: string, next?: string | null): string | null;
-        static link(next: any): string;
-        static make_link(next: {
-            [key: string]: any;
-        }): string;
-        constructor(prefix?: string);
-        value(key: string, next?: string): string | null;
-        sub(postfix: string): $mol_state_arg;
-        link(next: {
-            [key: string]: string;
-        }): string;
-    }
-}
-
-declare namespace $ {
-}
-
-declare namespace $.$$ {
-    class $mol_link extends $.$mol_link {
-        uri(): string;
-        current(): boolean;
-        event_click(event?: Event): void;
-        file_name(): string;
-        minimal_height(): number;
-        theme(): "$mol_theme_base" | null;
-    }
-}
-
-declare namespace $ {
     class $mol_state_local<Value> extends $mol_object {
         static 'native()': Pick<Storage, 'getItem' | 'setItem' | 'removeItem'>;
         static native(): Storage | {
@@ -1251,6 +1187,70 @@ declare namespace $ {
 }
 
 declare namespace $ {
+    class $mol_link extends $mol_view {
+        dom_name(): string;
+        attr(): {
+            href: string;
+            title: string;
+            target: string;
+            download: string;
+            mol_link_current: boolean;
+            mol_theme: any;
+        };
+        uri(): string;
+        hint(): string;
+        target(): string;
+        file_name(): string;
+        current(): boolean;
+        theme(): any;
+        sub(): readonly $mol_view_content[];
+        arg(): {};
+        event(): {
+            click: (event?: any) => any;
+        };
+        click(event?: any, force?: $mol_mem_force): any;
+        event_click(event?: any, force?: $mol_mem_force): any;
+    }
+}
+
+declare namespace $ {
+    class $mol_state_arg extends $mol_object {
+        prefix: string;
+        static href(next?: string): string;
+        static dict(next?: {
+            [key: string]: string | null;
+        }): {
+            [key: string]: string;
+        };
+        static value(key: string, next?: string | null): string | null;
+        static link(next: any): string;
+        static make_link(next: {
+            [key: string]: any;
+        }): string;
+        constructor(prefix?: string);
+        value(key: string, next?: string): string | null;
+        sub(postfix: string): $mol_state_arg;
+        link(next: {
+            [key: string]: string;
+        }): string;
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $.$$ {
+    class $mol_link extends $.$mol_link {
+        uri(): string;
+        current(): boolean;
+        event_click(event?: Event): void;
+        file_name(): string;
+        minimal_height(): number;
+        theme(): "$mol_theme_base" | null;
+    }
+}
+
+declare namespace $ {
     class $mol_svg extends $mol_view {
         dom_name(): string;
         dom_name_space(): string;
@@ -1340,17 +1340,6 @@ declare namespace $ {
         hint(): string;
         sub(): readonly any[];
         Icon(): $mol_icon_github_circle;
-    }
-}
-
-declare namespace $ {
-    class $mol_func_sandbox {
-        static _make: (contexts: Object[]) => (code: string) => () => void;
-        static get make(): ((contexts: Object[]) => (code: string) => () => void) | ((...args: Object[]) => (code: string) => any);
-        constructor(...contexts: Object[]);
-        contexts: Object[];
-        _eval: ((code: string) => () => void) | undefined;
-        get eval(): (code: string) => any;
     }
 }
 
@@ -1486,62 +1475,6 @@ declare namespace $.$$ {
             readonly quoteSingle?: ((event: KeyboardEvent) => void) | undefined;
         };
         keydown(event?: KeyboardEvent): void;
-    }
-}
-
-declare namespace $ {
-    class $mol_bar extends $mol_view {
-    }
-}
-
-declare namespace $ {
-}
-
-declare namespace $ {
-    class $mol_string extends $mol_view {
-        dom_name(): string;
-        enabled(): boolean;
-        minimal_height(): number;
-        autocomplete(): boolean;
-        field(): {
-            disabled: boolean;
-            value: any;
-            placeholder: string;
-            type: any;
-            spellcheck: boolean;
-            autocomplete: string;
-        };
-        disabled(): boolean;
-        value_changed(val?: any, force?: $mol_mem_force): any;
-        value(val?: any, force?: $mol_mem_force): any;
-        hint(): string;
-        type(val?: any, force?: $mol_mem_force): any;
-        spellcheck(): boolean;
-        autocomplete_native(): string;
-        attr(): {
-            maxlength: number;
-        };
-        length_max(): number;
-        event(): {
-            input: (event?: any) => any;
-            keydown: (event?: any) => any;
-        };
-        event_change(event?: any, force?: $mol_mem_force): any;
-        event_key_press(event?: any, force?: $mol_mem_force): any;
-        plugins(): readonly any[];
-        Submit(): $$.$mol_hotkey;
-        submit(event?: any, force?: $mol_mem_force): any;
-    }
-}
-
-declare namespace $ {
-}
-
-declare namespace $.$$ {
-    class $mol_string extends $.$mol_string {
-        event_change(next?: Event): void;
-        disabled(): boolean;
-        autocomplete_native(): "on" | "off";
     }
 }
 
@@ -2044,6 +1977,62 @@ declare namespace $.$$ {
 }
 
 declare namespace $ {
+    class $mol_bar extends $mol_view {
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+    class $mol_string extends $mol_view {
+        dom_name(): string;
+        enabled(): boolean;
+        minimal_height(): number;
+        autocomplete(): boolean;
+        field(): {
+            disabled: boolean;
+            value: any;
+            placeholder: string;
+            type: any;
+            spellcheck: boolean;
+            autocomplete: string;
+        };
+        disabled(): boolean;
+        value_changed(val?: any, force?: $mol_mem_force): any;
+        value(val?: any, force?: $mol_mem_force): any;
+        hint(): string;
+        type(val?: any, force?: $mol_mem_force): any;
+        spellcheck(): boolean;
+        autocomplete_native(): string;
+        attr(): {
+            maxlength: number;
+        };
+        length_max(): number;
+        event(): {
+            input: (event?: any) => any;
+            keydown: (event?: any) => any;
+        };
+        event_change(event?: any, force?: $mol_mem_force): any;
+        event_key_press(event?: any, force?: $mol_mem_force): any;
+        plugins(): readonly any[];
+        Submit(): $$.$mol_hotkey;
+        submit(event?: any, force?: $mol_mem_force): any;
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $.$$ {
+    class $mol_string extends $.$mol_string {
+        event_change(next?: Event): void;
+        disabled(): boolean;
+        autocomplete_native(): "on" | "off";
+    }
+}
+
+declare namespace $ {
     class $mol_textarea extends $mol_view {
         event(): {
             keydown: (event?: any) => any;
@@ -2100,15 +2089,17 @@ declare namespace $ {
         title(): string;
         tools(): readonly any[];
         Source(): $mol_link_source;
-        Sandbox(): $mol_func_sandbox;
         plugins(): readonly any[];
         Hotkey(): $$.$mol_hotkey;
         run(event?: any, force?: $mol_mem_force): any;
         body(): readonly any[];
+        Intro(): $$.$mol_text;
+        intro(): string;
         Input(): $mol_bar;
         Code(): $$.$mol_textarea;
         script(val?: any, force?: $mol_mem_force): any;
         Run(): $mol_button_major;
+        run_hint(): string;
         Run_icon(): $mol_icon_play;
         Result(): $mol_view;
         result(val?: any, force?: $mol_mem_force): any;
@@ -2132,14 +2123,26 @@ declare namespace $ {
 }
 
 declare namespace $ {
+    class $mol_func_sandbox {
+        static _make: (contexts: Object[]) => (code: string) => () => void;
+        static get make(): ((contexts: Object[]) => (code: string) => () => void) | ((...args: Object[]) => (code: string) => any);
+        constructor(...contexts: Object[]);
+        contexts: Object[];
+        _eval: ((code: string) => () => void) | undefined;
+        get eval(): (code: string) => any;
+    }
+}
+
+declare namespace $ {
 }
 
 declare namespace $.$$ {
     class $hyoo_js_sandbox extends $.$hyoo_js_sandbox {
         script(next?: string): string;
         script_to_execute(next?: string): string;
+        Sandbox(): $mol_func_sandbox;
         func(): any;
-        result(next?: string): any;
+        result(next?: string): string;
         run(): void;
         snippets(): $hyoo_js_sandbox_snippet[];
         snippet_code(index: number): any;
