@@ -1,5 +1,5 @@
 {
-	"$hyoo_js_sandbox_intro": "Only JS and Math functions and constants are available inside the sandbox.\n**Hack it if you might!**",
+	"$hyoo_js_sandbox_intro": "Only JS and Math functions and constants are available inside the sandbox.\n**Hack it if you might!** See also [js benchmarking tool](https://t.co/Do7frQUQh3).",
 	"$hyoo_js_sandbox_run_hint": "Run",
 	"$hyoo_js_sandbox_title": "JavaScript Sandbox",
 	"$mol_link_source_hint": "Source code"
