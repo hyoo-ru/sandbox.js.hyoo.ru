@@ -1,21 +1,24 @@
 $hyoo_js_sandbox $mol_page
 	attr * mol_heme \$mol_theme_dark
-	title \JavaScript Sandbox
+	title @ \JavaScript Sandbox
 	tools /
 		<= Source $mol_link_source
 			uri \https://github.com/hyoo-ru/sandbox.js.hyoo.ru
-	Sandbox $mol_func_sandbox
 	plugins /
 		<= Hotkey $mol_hotkey
 			mod_ctrl true
 			key * enter?event <=> run?event null
 	body /
+		<= Intro $mol_text
+			text <= intro @ \
+				\Only JS and Math functions and constants are available inside the sandbox.
+				\**Hack it if you might!**
 		<= Input $mol_bar sub /
 			<= Code $mol_textarea
 				hint \return 42
 				value?val <=> script?val \
 			<= Run $mol_button_major
-				hint \Run
+				hint <= run_hint @ \Run
 				click?event <=> run?event null
 				sub /
 					<= Run_icon $mol_icon_play

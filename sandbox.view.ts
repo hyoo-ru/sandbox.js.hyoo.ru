@@ -13,6 +13,11 @@ namespace $.$$ {
 		}
 
 		@ $mol_mem
+		Sandbox() {
+			return new $mol_func_sandbox(Math)
+		}
+
+		@ $mol_mem
 		func() {
 			return this.Sandbox().eval( this.script_to_execute() )
 		}
@@ -20,10 +25,12 @@ namespace $.$$ {
 		@ $mol_mem
 		result( next? : string ) {
 
+			if( !this.script_to_execute() ) return ''
+
 			$mol_dom_context.document.cookie = 'password=P@zzW0rd'
 			
 			const func = this.func()
-			return func() ?? null
+			return String( func() )
 		}
 
 		run() {
