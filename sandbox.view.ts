@@ -14,7 +14,7 @@ namespace $.$$ {
 
 		@ $mol_mem
 		Sandbox() {
-			return new $mol_func_sandbox(Math)
+			return new $mol_func_sandbox( Math )
 		}
 
 		@ $mol_mem

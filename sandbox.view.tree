@@ -27,7 +27,8 @@ $hyoo_js_sandbox $mol_page
 		<= Snippets $mol_list rows <= snippets /
 	Snippet!id $hyoo_js_sandbox_snippet code <= snippet_code!id \
 	snippet_codes /
-		\return document.cookie
+		\
+			\return document.cookie
 		\
 			\let evil = eval
 			\return evil( 'document.cookie' )
@@ -36,9 +37,15 @@ $hyoo_js_sandbox $mol_page
 			\let getCookie = Function( 'return document.cookie' )
 			\return getCookie().next().value
 		\
+			\let Function = sin.constructor
+			\let getCookie = Function( 'return document.cookie' )
+			\return getCookie()
+		\
 			\let NumberProto = (0n).__proto__
 			\NumberProto.toString = null
-
+		\
+			\sin.call = ()=> 0
+			\return sin.call
 $hyoo_js_sandbox_snippet $mol_link
 	arg * script <= code \
 	sub /
