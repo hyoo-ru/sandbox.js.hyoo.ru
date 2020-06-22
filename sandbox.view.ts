@@ -49,6 +49,10 @@ namespace $.$$ {
 
 	export class $hyoo_js_sandbox_snippet extends $.$hyoo_js_sandbox_snippet {
 
+		theme_content() {
+			return this.$.$mol_lights() ? '$mol_theme_light' : '$mol_theme_dark'
+		}
+
 		text() {
 			return '```\n' + this.code() + '\n```'
 		}
