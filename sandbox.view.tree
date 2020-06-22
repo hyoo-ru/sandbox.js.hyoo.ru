@@ -54,5 +54,5 @@ $hyoo_js_sandbox_snippet $mol_link
 	arg * script <= code \
 	sub /
 		<= Text $mol_text
-			attr * mol_theme <= theme_content
+			attr * mol_theme <= theme_content \
 			text <= text <= code \
