@@ -29,8 +29,11 @@ namespace $.$$ {
 
 			$mol_dom_context.document.cookie = 'password=P@zzW0rd'
 			
-			const func = this.func()
-			return String( func() )
+			const async_func = this.func()
+			const sync_func = $mol_fiber_sync( async()=> async_func() )
+			
+			const res = sync_func()
+			return String( res )
 		}
 
 		run() {
