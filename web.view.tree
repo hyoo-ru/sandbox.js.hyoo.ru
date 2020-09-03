@@ -316,8 +316,6 @@ $mol_text_image $mol_view
 	sub /
 		<= title?val \
 
-$mol_bar $mol_view
-
 $mol_string $mol_view
 	dom_name \input
 	enabled true
@@ -354,12 +352,14 @@ $mol_textarea $mol_view
 		<= View $mol_text
 			text <= text \
 
+$mol_icon_play $mol_icon path \M8,5.14V19.14L19,12.14L8,5.14Z
+
 $mol_button_major $mol_button_typed
 	attr *
 		^
 		mol_theme \$mol_theme_accent
 
-$mol_icon_play $mol_icon path \M8,5.14V19.14L19,12.14L8,5.14Z
+$mol_bar $mol_view
 
 $hyoo_js_sandbox $mol_page
 	title @ \JavaScript Sandbox
