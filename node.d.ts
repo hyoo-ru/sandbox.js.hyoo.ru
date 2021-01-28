@@ -2335,8 +2335,8 @@ declare namespace $ {
         snippet_codes(): readonly any[];
         Lights(): $$.$mol_lights_toggle;
         Source(): $mol_link_source;
-        Theme(): $$.$mol_theme_auto;
         theme(): "$mol_theme_light" | "$mol_theme_dark";
+        Theme(): $$.$mol_theme_auto;
         run(event?: any): any;
         Hotkey(): $$.$mol_hotkey;
         intro(): string;
@@ -2435,8 +2435,8 @@ declare namespace $ {
 
 declare namespace $ {
     class $mol_view_tree_test_binding_right extends $mol_view {
-        Test(): $mol_view_tree_test_binding_right_test;
         outer_width(v?: any): any;
+        Test(): $mol_view_tree_test_binding_right_test;
     }
     class $mol_view_tree_test_binding_right_test extends $mol_view {
         width(val?: any): any;
