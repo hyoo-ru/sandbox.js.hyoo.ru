@@ -80,12 +80,10 @@ declare namespace $ {
     var $mol_dom_context: typeof globalThis;
 }
 
-/// <reference types="node" />
 interface $node {
     [key: string]: any;
 }
 declare var $node: $node;
-declare const $node_require: NodeRequire;
 
 declare namespace $ {
 }
@@ -1336,7 +1334,7 @@ declare namespace $ {
             tabindex: number;
             title: string;
         };
-        sub(): readonly any[];
+        sub(): readonly $mol_view_content[];
         checked(val?: any): any;
         Icon(): any;
         title(): string;
@@ -1355,7 +1353,7 @@ declare namespace $ {
 declare namespace $.$$ {
     class $mol_check extends $.$mol_check {
         click(next?: Event): void;
-        sub(): any[];
+        sub(): readonly $mol_view_content[];
         label(): readonly any[];
     }
 }
@@ -2403,6 +2401,10 @@ declare namespace $ {
         _eval: ((code: string) => () => any) | undefined;
         get eval(): (code: string) => () => any;
     }
+}
+
+declare namespace $ {
+    function $mol_try<Result>(handler: () => Result): Result | Error;
 }
 
 declare namespace $ {

@@ -555,7 +555,13 @@ var $;
                         return val;
                     if ('outerHTML' in val)
                         return val.outerHTML;
-                    return JSON.stringify(val);
+                    try {
+                        return JSON.stringify(val);
+                    }
+                    catch (error) {
+                        console.error(error);
+                        return val;
+                    }
                 };
                 return $.$mol_fail(new Error(`Not like (1:${+index + 2})\n${print(head)}\n---\n${print(value)}`));
             }
@@ -2519,6 +2525,17 @@ var $;
     });
 })($ || ($ = {}));
 //md.test.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_test({
+        'return result without errors'() {
+            $.$mol_assert_equal($.$mol_try(() => false), false);
+        },
+    });
+})($ || ($ = {}));
+//try.test.js.map
 ;
 "use strict";
 var $;

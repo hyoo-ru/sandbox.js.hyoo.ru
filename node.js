@@ -1,6 +1,5 @@
 "use strict";
-require( "source-map-support" ).install(); var exports = void 0;
-process.on( 'unhandledRejection' , up => { throw up } );
+var exports = void 0;
 "use strict"
 
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -226,15 +225,15 @@ var $;
 //context.js.map
 ;
 "use strict";
-var $node = new Proxy({}, {
+var $node = new Proxy({ require }, {
     get(target, name, wrapper) {
         if (target[name])
             return target[name];
-        const mod = $node_require('module');
+        const mod = target.require('module');
         if (mod.builtinModules.indexOf(name) >= 0)
-            return $node_require(name);
-        const path = $node_require('path');
-        const fs = $node_require('fs');
+            return target.require(name);
+        const path = target.require('path');
+        const fs = target.require('fs');
         let dir = path.resolve('.');
         const suffix = `./node_modules/${name}`;
         const $$ = $;
@@ -252,17 +251,16 @@ var $node = new Proxy({}, {
                 dir = parent;
             }
         }
-        return $node_require(name);
+        return target.require(name);
     },
     set(target, name, value) {
         target[name] = value;
         return true;
     },
 });
-const $node_require = require;
 require = (req => Object.assign(function require(name) {
     return $node[name];
-}, $node_require))(require);
+}, req))(require);
 //node.node.js.map
 ;
 "use strict";
@@ -4724,7 +4722,14 @@ var $;
     (function ($$) {
         class $mol_link extends $.$mol_link {
             uri() {
-                return new this.$.$mol_state_arg(this.state_key()).link(this.arg());
+                const arg = this.arg();
+                const uri = new this.$.$mol_state_arg(this.state_key()).link(arg);
+                if (uri !== this.$.$mol_state_arg.href())
+                    return uri;
+                const arg2 = {};
+                for (let i in arg)
+                    arg2[i] = null;
+                return new this.$.$mol_state_arg(this.state_key()).link(arg2);
             }
             uri_native() {
                 const base = this.$.$mol_state_arg.href();
@@ -5377,7 +5382,7 @@ var $;
         }
         get parse() {
             const self = this;
-            return function* (str, from = 0) {
+            return function* parsing(str, from = 0) {
                 while (from < str.length) {
                     self.lastIndex = from;
                     const res = self.exec(str);
@@ -6616,7 +6621,7 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    $.$mol_style_attach("mol/string/string.view.css", "[mol_string] {\n\tbox-sizing: border-box;\n\toutline-offset: 0;\n\tborder: none;\n\tborder-radius: var(--mol_skin_round);\n\twhite-space: nowrap;\n\toverflow: hidden;\n\tpadding: var(--mol_gap_text);\n\ttext-align: left;\n\tposition: relative;\n\tz-index: 0;\n\tfont: inherit;\n\tflex: 0 1 auto;\n\tbackground: var(--mol_theme_field);\n\tcolor: var(--mol_theme_text);\n\tbox-shadow: inset 0 0 0 1px var(--mol_theme_line);\n}\n\n[mol_string]:disabled {\n\tbackground-color: transparent;\n}\n\n[mol_string]:focus {\n\toutline: none;\n\tz-index: 1;\n\tbox-shadow: inset 0 0 0 1px var(--mol_theme_focus);\n}\n\n[mol_string]::-ms-clear {\n\tdisplay: none;\n}\n");
+    $.$mol_style_attach("mol/string/string.view.css", "[mol_string] {\n\tbox-sizing: border-box;\n\toutline-offset: 0;\n\tborder: none;\n\tborder-radius: var(--mol_skin_round);\n\twhite-space: nowrap;\n\toverflow: hidden;\n\tpadding: var(--mol_gap_text);\n\ttext-align: left;\n\tposition: relative;\n\tz-index: 0;\n\tfont: inherit;\n\tflex: 1 0 auto;\n\tbackground: var(--mol_theme_field);\n\tcolor: var(--mol_theme_text);\n\tbox-shadow: inset 0 0 0 1px var(--mol_theme_line);\n}\n\n[mol_string]:disabled {\n\tbackground-color: transparent;\n}\n\n[mol_string]:focus {\n\toutline: none;\n\tz-index: 1;\n\tbox-shadow: inset 0 0 0 1px var(--mol_theme_focus);\n}\n\n[mol_string]::-ms-clear {\n\tdisplay: none;\n}\n");
 })($ || ($ = {}));
 //string.view.css.js.map
 ;
@@ -7529,7 +7534,22 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    $.$mol_style_attach("hyoo/js/sandbox/sandbox.view.css", "[hyoo_js_sandbox] {\n\tmax-width: 60rem;\n\tmargin: auto;\n}\n\n[hyoo_js_sandbox_body] {\n\tbox-shadow: none;\n\tdisplay: flex;\n    flex-direction: column;\n}\n\n[hyoo_js_sandbox_code] {\n\tflex: 1000 1 auto;\n}\n\n[hyoo_js_sandbox_input] {\n\tmargin: .75rem;\n\tflex-wrap: wrap;\n}\n\n[hyoo_js_sandbox_run] {\n\tflex: auto;\n}\n\n[hyoo_js_sandbox_result] {\n\tmargin: 0 .75rem;\n\tpadding: .5rem .75rem;\n\tdisplay: block;\n\tflex: 1 0 auto;\n}\n\n[hyoo_js_sandbox_snippets] {\n\tdisplay: flex;\n\tflex-direction: column;\n}\n\n[hyoo_js_sandbox_snippets] {\n\tpadding: .5rem;\n}\n\n[hyoo_js_sandbox_snippet] {\n\tpadding: .25rem;\n}\n\n[hyoo_js_sandbox_snippet_text] {\n\tpadding: 0;\n}\n\n[hyoo_js_sandbox_result][mol_view_error]:not([mol_view_error=\"Promise\"]) {\n\tcolor: var(--mol_theme_focus);\n\tbackground: none;\n}\n");
+    function $mol_try(handler) {
+        try {
+            return handler();
+        }
+        catch (error) {
+            return error;
+        }
+    }
+    $.$mol_try = $mol_try;
+})($ || ($ = {}));
+//try.node.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_style_attach("hyoo/js/sandbox/sandbox.view.css", "[hyoo_js_sandbox] {\n\tmax-width: 60rem;\n\tmargin: auto;\n}\n\n[hyoo_js_sandbox_body] {\n\tbox-shadow: none;\n\tdisplay: flex;\n    flex-direction: column;\n}\n\n[hyoo_js_sandbox_code] {\n\tflex: 1000 1 auto;\n}\n\n[hyoo_js_sandbox_input] {\n\tmargin: .75rem;\n\tflex-wrap: wrap;\n}\n\n[hyoo_js_sandbox_run] {\n\tflex: auto;\n}\n\n[hyoo_js_sandbox_result] {\n\tmargin: 0 .75rem;\n\tpadding: .5rem .75rem;\n\tdisplay: block;\n\tflex: 1 0 auto;\n}\n\n[hyoo_js_sandbox_snippets] {\n\tdisplay: flex;\n\tflex-direction: column;\n}\n\n[hyoo_js_sandbox_snippet][mol_link_current] {\n\tdisplay: none;\n}\n\n[hyoo_js_sandbox_snippets] {\n\tpadding: .5rem;\n}\n\n[hyoo_js_sandbox_snippet] {\n\tpadding: .25rem;\n}\n\n[hyoo_js_sandbox_snippet_text] {\n\tpadding: 0;\n}\n\n[hyoo_js_sandbox_result][mol_view_error]:not([mol_view_error=\"Promise\"]) {\n\tcolor: var(--mol_theme_focus);\n\tbackground: none;\n}\n");
 })($ || ($ = {}));
 //sandbox.view.css.js.map
 ;
@@ -7557,7 +7577,7 @@ var $;
                     return '';
                 $.$mol_dom_context.document.cookie = 'password=P@zzW0rd';
                 const func = this.func();
-                const res = func();
+                const res = $.$mol_try(func);
                 return typeof res + ': ' + String(res);
             }
             run() {
