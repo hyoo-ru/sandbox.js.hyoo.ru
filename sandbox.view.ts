@@ -30,7 +30,7 @@ namespace $.$$ {
 			$mol_dom_context.document.cookie = 'password=P@zzW0rd'
 			
 			const func = this.func()
-			const res = func()
+			const res = $mol_try( func )
 			return typeof res + ': ' + String( res )
 		}
 
