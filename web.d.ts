@@ -2185,6 +2185,7 @@ declare namespace $ {
         enabled(): boolean;
         minimal_height(): number;
         autocomplete(): boolean;
+        selection(val?: any): any;
         auto(): readonly any[];
         field(): {
             disabled: boolean;
@@ -2192,8 +2193,8 @@ declare namespace $ {
             placeholder: string;
             spellcheck: boolean;
             autocomplete: string;
-            selectionEnd: any;
-            selectionStart: any;
+            selectionEnd: number;
+            selectionStart: number;
         };
         attr(): {
             maxlength: number;
@@ -2211,8 +2212,8 @@ declare namespace $ {
         hint(): string;
         spellcheck(): boolean;
         autocomplete_native(): string;
-        selection_end(val?: any): any;
-        selection_start(val?: any): any;
+        selection_end(): number;
+        selection_start(): number;
         length_max(): number;
         type(val?: any): any;
         event_change(event?: any): any;
@@ -2232,6 +2233,8 @@ declare namespace $.$$ {
         autocomplete_native(): "on" | "off";
         selection_watcher(): $mol_dom_listener;
         selection_change(event: Event): void;
+        selection_start(): any;
+        selection_end(): any;
     }
 }
 
@@ -2339,6 +2342,7 @@ declare namespace $ {
         hint(): string;
         enabled(): boolean;
         length_max(): number;
+        selection(val?: any): any;
         Edit(): $$.$mol_string;
         row_numb(index: any): number;
         View(): $$.$mol_text_code;
