@@ -231,8 +231,8 @@
     "$mol_try"
   ],
   "dependencies": {
-    "jsdom": "*",
     "colorette": "*",
+    "jsdom": "*",
     "chokidar": "*"
   }
 }

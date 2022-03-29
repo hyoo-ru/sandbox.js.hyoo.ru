@@ -1104,9 +1104,6 @@ var $;
                 return;
             return this.cache;
         }
-        persistent() {
-            return this instanceof $mol_wire_fiber_persist;
-        }
         field() {
             return this.task.name + '()';
         }
@@ -1118,23 +1115,6 @@ var $;
             this.pop();
             this.pub_from = this.sub_from = args.length;
             this[Symbol.toStringTag] = id;
-        }
-        destructor() {
-            super.destructor();
-            const prev = this.cache;
-            if ($mol_owning_check(this, prev)) {
-                prev.destructor();
-            }
-            if (this instanceof $mol_wire_fiber_persist) {
-                if (this.pub_from === 0) {
-                    ;
-                    (this.host ?? this.task)[this.field()] = null;
-                }
-                else {
-                    ;
-                    (this.host ?? this.task)[this.field()].delete(this[Symbol.toStringTag]);
-                }
-            }
         }
         plan() {
             $mol_wire_fiber.planning.push(this);
@@ -1167,15 +1147,6 @@ var $;
                 this.plan();
             else
                 super.emit(quant);
-        }
-        commit() {
-            if (this instanceof $mol_wire_fiber_persist)
-                return;
-            super.commit();
-            if (this.host instanceof $mol_wire_fiber) {
-                this.host.put(this.cache);
-            }
-            this.destructor();
         }
         refresh() {
             if (this.cursor === $mol_wire_cursor.fresh)
@@ -1319,6 +1290,10 @@ var $;
                 return new $mol_wire_fiber_temp(`${host?.[Symbol.toStringTag] ?? host}.${task.name}(#)`, task, host, ...args);
             };
         }
+        commit() {
+            super.commit();
+            this.destructor();
+        }
     }
     $.$mol_wire_fiber_temp = $mol_wire_fiber_temp;
     class $mol_wire_fiber_persist extends $mol_wire_fiber {
@@ -1355,7 +1330,23 @@ var $;
             }
         }
         recall(...args) {
-            return this.task.call(this.host, ...args);
+            return this.put(this.task.call(this.host, ...args));
+        }
+        commit() { }
+        destructor() {
+            super.destructor();
+            const prev = this.cache;
+            if ($mol_owning_check(this, prev)) {
+                prev.destructor();
+            }
+            if (this.pub_from === 0) {
+                ;
+                (this.host ?? this.task)[this.field()] = null;
+            }
+            else {
+                ;
+                (this.host ?? this.task)[this.field()].delete(this[Symbol.toStringTag]);
+            }
         }
     }
     __decorate([
@@ -2268,6 +2259,36 @@ var $;
     $.$mol_style_sheet = $mol_style_sheet;
 })($ || ($ = {}));
 //mol/style/sheet/sheet.ts
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_plugin extends $mol_view {
+        dom_node(next) {
+            const node = next || $mol_owning_get(this).host.dom_node();
+            $mol_dom_render_attributes(node, this.attr_static());
+            const events = $mol_wire_async(this.event());
+            for (let event_name in events) {
+                node.addEventListener(event_name, events[event_name], { passive: false });
+            }
+            return node;
+        }
+        attr_static() {
+            return {};
+        }
+        event() {
+            return {};
+        }
+        render() {
+            this.dom_node_actual();
+        }
+    }
+    __decorate([
+        $mol_mem
+    ], $mol_plugin.prototype, "dom_node", null);
+    $.$mol_plugin = $mol_plugin;
+})($ || ($ = {}));
+//mol/plugin/plugin.ts
 ;
 "use strict";
 var $;
@@ -4302,36 +4323,6 @@ var $;
     $.$mol_link_source = $mol_link_source;
 })($ || ($ = {}));
 //mol/link/source/-view.tree/source.view.tree.ts
-;
-"use strict";
-var $;
-(function ($) {
-    class $mol_plugin extends $mol_view {
-        dom_node(next) {
-            const node = next || $mol_owning_get(this).host.dom_node();
-            $mol_dom_render_attributes(node, this.attr_static());
-            const events = $mol_wire_async(this.event());
-            for (let event_name in events) {
-                node.addEventListener(event_name, events[event_name], { passive: false });
-            }
-            return node;
-        }
-        attr_static() {
-            return {};
-        }
-        event() {
-            return {};
-        }
-        render() {
-            this.dom_node_actual();
-        }
-    }
-    __decorate([
-        $mol_mem
-    ], $mol_plugin.prototype, "dom_node", null);
-    $.$mol_plugin = $mol_plugin;
-})($ || ($ = {}));
-//mol/plugin/plugin.ts
 ;
 "use strict";
 var $;
