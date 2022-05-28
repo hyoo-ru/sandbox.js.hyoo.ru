@@ -154,6 +154,7 @@
     "$mol_wait",
     "$mol_promise",
     "$mol_textarea",
+    "$mol_stack",
     "$mol_string",
     "$mol_icon_play",
     "$mol_button_major",
