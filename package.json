@@ -129,6 +129,7 @@
     "$mol_icon_github",
     "$mol_theme_auto",
     "$mol_hotkey",
+    "$mol_text_text",
     "$mol_text",
     "$mol_list",
     "$mol_support_css",
