@@ -110,6 +110,7 @@
     "$mol_lights_toggle",
     "$mol_lights",
     "$mol_state_arg",
+    "$mol_action",
     "$mol_media",
     "$mol_check_icon",
     "$mol_check",
