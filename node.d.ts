@@ -2498,7 +2498,6 @@ declare namespace $ {
         };
         event(): {
             input: (event?: any) => any;
-            keydown: (event?: any) => any;
         };
         plugins(): readonly any[];
         selection_watcher(): any;
@@ -2515,7 +2514,6 @@ declare namespace $ {
         length_max(): number;
         type(val?: any): string;
         event_change(event?: any): any;
-        event_key_press(event?: any): any;
         submit(event?: any): any;
         Submit(): $$.$mol_hotkey;
     }
