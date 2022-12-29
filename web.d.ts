@@ -1209,6 +1209,55 @@ declare namespace $ {
 }
 
 declare namespace $ {
+}
+
+declare namespace $ {
+    class $mol_button_minor extends $mol_button_typed {
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+    class $mol_check extends $mol_button_minor {
+        attr(): {
+            mol_check_checked: boolean;
+            "aria-checked": boolean;
+            role: string;
+            disabled: boolean;
+            tabindex: number;
+            title: string;
+        };
+        sub(): readonly $mol_view_content[];
+        checked(val?: any): boolean;
+        Icon(): any;
+        title(): string;
+        Title(): $mol_view;
+        label(): readonly any[];
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $.$$ {
+    class $mol_check extends $.$mol_check {
+        click(next?: Event): void;
+        sub(): readonly $mol_view_content[];
+        label(): readonly any[];
+    }
+}
+
+declare namespace $ {
+    class $mol_check_icon extends $mol_check {
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
     class $mol_svg extends $mol_view {
         dom_name(): string;
         dom_name_space(): string;
@@ -1276,55 +1325,6 @@ declare namespace $ {
         sub(): readonly any[];
         path(): string;
         Path(): $mol_svg_path;
-    }
-}
-
-declare namespace $ {
-}
-
-declare namespace $ {
-}
-
-declare namespace $ {
-    class $mol_button_minor extends $mol_button_typed {
-    }
-}
-
-declare namespace $ {
-}
-
-declare namespace $ {
-    class $mol_check extends $mol_button_minor {
-        attr(): {
-            mol_check_checked: boolean;
-            "aria-checked": boolean;
-            role: string;
-            disabled: boolean;
-            tabindex: number;
-            title: string;
-        };
-        sub(): readonly $mol_view_content[];
-        checked(val?: any): boolean;
-        Icon(): any;
-        title(): string;
-        Title(): $mol_view;
-        label(): readonly any[];
-    }
-}
-
-declare namespace $ {
-}
-
-declare namespace $.$$ {
-    class $mol_check extends $.$mol_check {
-        click(next?: Event): void;
-        sub(): readonly $mol_view_content[];
-        label(): readonly any[];
-    }
-}
-
-declare namespace $ {
-    class $mol_check_icon extends $mol_check {
     }
 }
 
@@ -2328,7 +2328,7 @@ declare namespace $ {
         Paragraph(id: any): $$.$mol_paragraph;
         Quote(id: any): $$.$mol_text;
         List(id: any): $$.$mol_text;
-        Header(id: any): $mol_text_header;
+        Header(id: any): $$.$mol_text_header;
         Pre(id: any): $$.$mol_text_code;
         Table(id: any): $$.$mol_grid;
         Table_row(id: any): $mol_grid_row;
@@ -2345,7 +2345,7 @@ declare namespace $ {
         quote_text(id: any): string;
         highlight(): string;
         list_text(id: any): string;
-        header_level(id: any): string;
+        header_level(id: any): number;
         header_arg(id: any): {};
         pre_text(id: any): string;
         code_sidebar_showed(): boolean;
@@ -2362,6 +2362,7 @@ declare namespace $ {
         link_host(id: any): string;
     }
     class $mol_text_header extends $mol_paragraph {
+        level(): number;
         sub(): readonly any[];
         arg(): {};
         content(): readonly any[];
@@ -2389,7 +2390,7 @@ declare namespace $.$$ {
         block_type(index: number): string;
         rows(): ($mol_paragraph | $mol_text_code | $mol_grid | $mol_text | $mol_text_header)[];
         param(): string;
-        header_level(index: number): string;
+        header_level(index: number): number;
         header_arg(index: number): {
             [x: string]: string;
         };
@@ -2446,6 +2447,9 @@ declare namespace $.$$ {
         link_uri(path: readonly number[]): string;
         link_host(path: readonly number[]): string;
         auto_scroll(): void;
+    }
+    class $mol_text_header extends $.$mol_text_header {
+        dom_name(): string;
     }
 }
 
