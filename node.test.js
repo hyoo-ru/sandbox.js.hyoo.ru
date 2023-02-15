@@ -3931,7 +3931,7 @@ var $;
         attr() {
             return {
                 ...super.attr(),
-                mol_theme: "$mol_theme_accent"
+                mol_theme: this.theme()
             };
         }
         style() {
@@ -3944,6 +3944,9 @@ var $;
             return [
                 this.value()
             ];
+        }
+        theme() {
+            return "$mol_theme_accent";
         }
         value() {
             return null;
