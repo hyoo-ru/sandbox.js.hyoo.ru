@@ -198,6 +198,7 @@
     "$mol_wait",
     "$mol_promise_promise",
     "$mol_embed_youtube",
+    "$mol_icon_youtube",
     "$mol_frame",
     "$mol_textarea",
     "$mol_string",
