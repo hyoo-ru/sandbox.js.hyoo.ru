@@ -9738,6 +9738,5 @@ var $;
     $mol_style_attach("hyoo/js/sandbox/sandbox.view.css", "[hyoo_js_sandbox] {\n\tmax-width: 60rem;\n\tmargin: auto;\n}\n\n[hyoo_js_sandbox_body] {\n\tbox-shadow: none;\n\tdisplay: flex;\n    flex-direction: column;\n}\n\n[hyoo_js_sandbox_code] {\n\tflex: 1000 1 auto;\n}\n\n[hyoo_js_sandbox_input] {\n\tmargin: .75rem;\n\tflex-wrap: wrap;\n}\n\n[hyoo_js_sandbox_run] {\n\tflex: auto;\n}\n\n[hyoo_js_sandbox_result] {\n\tmargin: 0 .75rem;\n\tpadding: .5rem .75rem;\n\tdisplay: block;\n\tflex: 1 0 auto;\n}\n\n[hyoo_js_sandbox_snippets] {\n\tdisplay: flex;\n\tflex-direction: column;\n}\n\n[hyoo_js_sandbox_snippet][mol_link_current] {\n\tdisplay: none;\n}\n\n[hyoo_js_sandbox_snippets] {\n\tpadding: .5rem;\n}\n\n[hyoo_js_sandbox_snippet] {\n\tpadding: .25rem;\n}\n\n[hyoo_js_sandbox_snippet_text] {\n\tpadding: 0;\n}\n\n[hyoo_js_sandbox_result][mol_view_error]:not([mol_view_error=\"Promise\"]) {\n\tcolor: var(--mol_theme_focus);\n\tbackground: none;\n}\n");
 })($ || ($ = {}));
 //hyoo/js/sandbox/-css/sandbox.view.css.ts
-;
-export default $
-//# sourceMappingURL=node.mjs.map
+
+//# sourceMappingURL=node.js.map
