@@ -9786,4 +9786,5 @@ var $;
 })($ || ($ = {}));
 //hyoo/js/sandbox/-css/sandbox.view.css.ts
 
+export default $
 //# sourceMappingURL=node.js.map

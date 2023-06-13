@@ -9175,4 +9175,5 @@ var $;
 })($ || ($ = {}));
 //hyoo/js/sandbox/-css/sandbox.view.css.ts
 
+export default $
 //# sourceMappingURL=web.js.map
