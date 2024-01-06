@@ -2589,6 +2589,7 @@ declare namespace $.$$ {
             cell: number;
         }): string;
         uri_base(): string;
+        uri_base_abs(): URL;
         uri_resolve(uri: string): string;
         code_syntax(): $mol_syntax2<{
             'code-indent': RegExp;
