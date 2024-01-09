@@ -8391,7 +8391,7 @@ var $;
                 });
             }
             param() {
-                return this.toString().replace(/^.*?\)\./, '').replace(/[()]/g, '');
+                return this.toString().replace(/^.*?[\)>]\./, '').replace(/[(<>)]/g, '');
             }
             header_level(index) {
                 return this.flow_tokens()[index].chunks[0].length;
@@ -9173,6 +9173,7 @@ var $;
                         : this.symbols_alt()[$mol_keyboard_code[event.keyCode]];
                 if (!symbol)
                     return;
+                event.preventDefault();
                 document.execCommand('insertText', false, symbol);
             }
             clickable(next) {
@@ -9197,8 +9198,8 @@ var $;
                             break;
                         default: return;
                     }
+                    event.preventDefault();
                 }
-                event.preventDefault();
             }
             row_numb(index) {
                 return index;
