@@ -4201,6 +4201,9 @@ var $;
         open(...modes) {
             return 0;
         }
+        toJSON() {
+            return this.path();
+        }
     }
     __decorate([
         $mol_mem
