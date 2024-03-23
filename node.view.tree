@@ -629,10 +629,7 @@ $mol_textarea_edit $mol_string
 
 $mol_icon_play $mol_icon path \M8,5.14V19.14L19,12.14L8,5.14Z
 
-$mol_button_major $mol_button_typed
-	attr *
-		^
-		mol_theme \$mol_theme_accent
+$mol_button_major $mol_button_minor
 
 $mol_bar $mol_view
 
