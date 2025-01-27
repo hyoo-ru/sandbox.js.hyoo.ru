@@ -14,7 +14,7 @@ $hyoo_js_sandbox $mol_page
 		<= Intro $mol_text
 			text <= intro @ \
 				\Only JS and Math functions and constants are available inside the sandbox.
-				\**Hack it if you might!** See also [js benchmarking tool](https://t.co/Do7frQUQh3).
+				\**Hack it if you might!**
 		<= Input $mol_bar sub /
 			<= Code $mol_textarea
 				hint \return 42
