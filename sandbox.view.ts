@@ -27,7 +27,9 @@ namespace $.$$ {
 
 			if( !this.script_to_execute() ) return ''
 
-			$mol_dom_context.document.cookie = 'password=P@zzW0rd'
+			try {
+				$mol_dom_context.document.cookie = 'password=P@zzW0rd'
+			} catch {}
 			
 			const func = this.func()
 			const res = $mol_try( func )
