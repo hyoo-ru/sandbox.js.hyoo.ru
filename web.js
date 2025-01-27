@@ -9551,7 +9551,6 @@ var $;
                         return response;
                     const headers = new Headers(response.headers);
                     headers.set("$mol_offline", "");
-                    headers.set("Origin-Agent-Cluster", "?1");
                     return new Response(response.body, {
                         status: response.status,
                         statusText: response.statusText,
@@ -9633,7 +9632,10 @@ var $;
             result(next) {
                 if (!this.script_to_execute())
                     return '';
-                $mol_dom_context.document.cookie = 'password=P@zzW0rd';
+                try {
+                    $mol_dom_context.document.cookie = 'password=P@zzW0rd';
+                }
+                catch { }
                 const func = this.func();
                 const res = $mol_try(func);
                 return typeof res + ': ' + String(res);
