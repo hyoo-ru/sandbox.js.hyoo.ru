@@ -214,7 +214,9 @@
     "$mol_button_major",
     "$mol_bar",
     "$mol_func_sandbox",
-    "$mol_try"
+    "$mol_try",
+    "$mol_offline_install",
+    "$mol_offline"
   ],
   "dependencies": {
     "jsdom": "*"
