@@ -153,7 +153,8 @@ $mol_link_source $mol_link
 		<= Icon $mol_icon_script_text
 
 $mol_theme_auto $mol_plugin
-	attr * mol_theme <= theme \
+	light \$mol_theme_light
+	attr * mol_theme <= theme <= dark \$mol_theme_dark
 
 $mol_hotkey $mol_plugin
 	event *
