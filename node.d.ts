@@ -446,6 +446,10 @@ declare namespace $ {
 }
 
 declare namespace $ {
+    function $mol_try<Result>(handler: () => Result): Result | Error;
+}
+
+declare namespace $ {
     function $mol_fail_log(error: unknown): boolean;
 }
 
@@ -3943,10 +3947,6 @@ declare namespace $ {
         _eval: ((code: string) => () => any) | undefined;
         get eval(): (code: string) => () => any;
     }
-}
-
-declare namespace $ {
-    function $mol_try<Result>(handler: () => Result): Result | Error;
 }
 
 declare namespace $ {
