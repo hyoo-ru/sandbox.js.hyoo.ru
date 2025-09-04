@@ -219,7 +219,9 @@
     "$mol_icon_play",
     "$mol_button_major",
     "$mol_bar",
-    "$mol_func_sandbox"
+    "$mol_func_sandbox",
+    "$mol_offline_install",
+    "$mol_offline"
   ],
   "dependencies": {
     "jsdom": "*"
