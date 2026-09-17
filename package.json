@@ -178,6 +178,7 @@
     "$mol_icon_script",
     "$mol_theme_auto",
     "$mol_hotkey",
+    "$mol_hotkey2",
     "$mol_text_text",
     "$mol_text",
     "$mol_list",
